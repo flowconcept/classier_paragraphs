@@ -15,7 +15,7 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @FieldWidget(
  *   id = "classier_paragraphs_form",
- *   label = @Translation("Classier Paragraphs form"),
+ *   label = @Translation("Subform"),
  *   field_types = {
  *     "classier_paragraphs"
  *   }

@@ -20,7 +20,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   description = @Translation("An entity field for storing CSS class values."),
  *   category = @Translation("Paragraphs"),
  *   default_widget = "classier_paragraphs_form",
- *   default_formatter = "basic_string"
+ *   default_formatter = ""
  * )
  */
 class ClassierParagraphsItem extends FieldItemBase {
