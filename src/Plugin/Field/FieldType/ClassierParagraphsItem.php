@@ -28,7 +28,7 @@ class ClassierParagraphsItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
-    $properties['value'] = DataDefinition::create('string')
+    $properties['_value'] = DataDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Serialized classes'));
 
     return $properties;
@@ -40,7 +40,7 @@ class ClassierParagraphsItem extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     return array(
       'columns' => array(
-        'value' => array(
+        '_value' => array(
           'type' => 'blob',
           'size' => 'big',
         ),
@@ -52,12 +52,12 @@ class ClassierParagraphsItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public function setValue($values, $notify = TRUE) {
-    if (isset($values['value'])) {
-      $values += unserialize($values['value']);
+    if (isset($values['_value'])) {
+      $values += unserialize($values['_value']);
     }
     else {
-      unset($values['value']);
-      $values['value'] = serialize($values);
+      unset($values['_value']);
+      $values['_value'] = serialize($values);
     }
     parent::setValue($values, $notify);
   }
@@ -66,8 +66,8 @@ class ClassierParagraphsItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    if (isset($this->value)) {
-      return count(unserialize($this->value)) == 0;
+    if (isset($this->_value)) {
+      return count(unserialize($this->_value)) == 0;
     }
     else {
       return count($this->values) == 0;
