@@ -37,23 +37,20 @@ function classier_paragraphs_preprocess_paragraph(&$variables) {
  * @return array
  */
 function classier_paragraphs_get_classes(Paragraph $paragraph) {
-  $classes = array();
   $field_definitions = $paragraph->getFieldDefinitions();
   $instances = field_entity_bundle_field_info($paragraph->getEntityType(), $paragraph->getType(), $field_definitions);
 
   foreach ($instances as $instance) {
     if ($instance->getType() == 'classier_paragraphs') {
       $field_name = $instance->getName();
+      $items = $paragraph->get($field_name)->get(0)->getValue();
 
-      // Filter out internal keys.
-      $items = array_filter($paragraph->get($field_name)->getValue(), function ($key) {
+      // Filter out internal keys starting with '_'.
+      return array_filter($items, function ($key) {
         return substr($key, 0, 1) !== '_';
       }, ARRAY_FILTER_USE_KEY);
-
-      foreach ($items as $value) {
-        $classes[] = $value;
-      }
     }
   }
-  return $classes;
+
+  return array();
 }
