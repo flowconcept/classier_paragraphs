@@ -1,0 +1,8 @@
+name: Classier Paragraphs
+type: module
+description: Allows editors to apply classes to paragraphs.
+package: Paragraphs
+core: 8.x
+dependencies:
+  - field
+  - paragraphs

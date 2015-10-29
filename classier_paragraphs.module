@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Classy Paragraphs.
+ */
+
+use \Drupal\Component\Utility\Html;
+use \Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Prepares variables for paragraph templates.
+ *
+ * Default template: paragraph.html.twig.
+ *
+ * Most themes use their own copy of paragraph.html.twig. The default is located
+ * inside "templates/paragraph.html.twig". Look in there for the
+ * full list of variables.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ *   - paragraph: The paragraph object.
+ *   - view_mode: View mode; e.g., 'full', 'teaser'...
+ */
+function classier_paragraphs_preprocess_paragraph(&$variables) {
+  $classes = classier_paragraphs_get_classes($variables['paragraph']);
+  foreach ($classes as $class) {
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier($class);
+  }
+}
+
+/**
+ * Get class names from paragraph item.
+ *
+ * @param Paragraph $paragraph
+ * @return array
+ */
+function classier_paragraphs_get_classes(Paragraph $paragraph) {
+  $classes = array();
+  $field_definitions = $paragraph->getFieldDefinitions();
+  $instances = field_entity_bundle_field_info($paragraph->getEntityType(), $paragraph->getType(), $field_definitions);
+
+  foreach ($instances as $instance) {
+    if ($instance->getType() == 'classier_paragraphs') {
+      $field_name = $instance->getName();
+
+      // Filter out internal keys.
+      $items = array_filter($paragraph->get($field_name)->getValue(), function ($key) {
+        return substr($key, 0, 1) !== '_';
+      }, ARRAY_FILTER_USE_KEY);
+
+      foreach ($items as $value) {
+        $classes[] = $value;
+      }
+    }
+  }
+  return $classes;
+}
