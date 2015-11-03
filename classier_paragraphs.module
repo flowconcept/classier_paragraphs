@@ -7,7 +7,6 @@
 
 use \Drupal\Component\Utility\Html;
 use \Drupal\paragraphs\Entity\Paragraph;
-use \Drupal\file\Entity\File;
 
 /**
  * Prepares variables for paragraph templates.
@@ -27,16 +26,7 @@ use \Drupal\file\Entity\File;
 function classier_paragraphs_preprocess_paragraph(&$variables) {
   $classes = classier_paragraphs_get_classes($variables['paragraph']);
   foreach ($classes as $class) {
-    if (is_string($class)) {
-      $variables['attributes']['class'][] = Html::cleanCssIdentifier($class);
-    }
-    elseif (is_array($class) && !empty($class[0])) {
-      /**
-       * @var $file \Drupal\file\Entity\File
-       */
-      $file = File::load($class[0]);
-      $variables['attributes']['style'][] = 'background-image: url(' . $file->url() . ')';
-    }
+    $variables['attributes']['class'][] = Html::cleanCssIdentifier($class);
   }
 }
 
