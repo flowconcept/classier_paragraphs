@@ -6,6 +6,7 @@
 
 namespace Drupal\classier_paragraphs\Plugin\Field\FieldWidget;
 
+use Drupal;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -22,32 +23,39 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class ClassierParagraphsWidget extends WidgetBase {
+
   /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element['title'] = [
-      '#type' => 'radios',
-      '#title' => 'Ausrichtung Titel',
-      '#options' => [
-        'title_left' => 'linksbündig',
-        'title_center' => 'zentriert',
-      ],
-      '#default_value' => isset($items[$delta]->title) ? $items[$delta]->title : 'title_left',
-    ];
-    $element['background'] = [
-      '#type' => 'radios',
-      '#title' => 'Hintergrund',
-      '#options' => [
-        'background_none' => 'keiner / weiß',
-        'background_color_signature_green_light' => 'hellgrün',
-        'background_image_wood' => 'Bühne mit Holz',
-      ],
-      '#default_value' => isset($items[$delta]->background) ? $items[$delta]->background : 'background_none',
-//      '#theme_wrappers' => [
-//        'my_form_element' // for markup in #title?
-//      ]
-    ];
+    /* @var $entity \Drupal\Core\Entity\FieldableEntityInterface */
+    $entity = $items->getParent()->getValue();
+    return $this->subForm($entity->getEntityTypeId(), $entity->bundle(), $items[$delta]);
+  }
+
+  /**
+   * Builds the user-specific subform.
+   */
+  public function subForm($entity_type, $bundle, $item) {
+    // Invoke hook_classier_paragraphs_form
+    $element = Drupal::moduleHandler()->invokeAll('classier_paragraphs_form', array($entity_type, $bundle, $item));
+
+    // Let the themes play too, because classes for paragraphs is quite a themey thing.
+    $theme_handler = Drupal::service('theme_handler');
+    /* @var $theme_handler Drupal\Core\Extension\ThemeHandlerInterface */
+    $default_theme = $theme_handler->getDefault();
+    $themes = array_keys($theme_handler->getBaseThemes($theme_handler->listInfo(), $default_theme));
+    $themes[] = $default_theme;
+    foreach ($themes as $theme_name) {
+      $function = $theme_name . '_classier_paragraphs_form';
+      $theme_handler->getTheme($theme_name)->load();
+      if (function_exists($function)) {
+        $element = $function($entity_type, $bundle, $item);
+      }
+    }
+
+    Drupal::moduleHandler()->alter('classier_paragraphs_form', $element, $entity_type, $bundle, $item);
+
     return $element;
   }
 }
