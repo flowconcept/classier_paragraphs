@@ -1,5 +1,6 @@
 {
   "name": "flowconcept/classier_paragraphs",
+  "description": "A classier approach to add css classes to Drupal paragraphs",
   "version": "master",
   "type": "drupal-module",
   "license": "GPL-2.0+",
