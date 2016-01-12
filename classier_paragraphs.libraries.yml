@@ -1,0 +1,4 @@
+classier_paragraphs.admin:
+  css:
+    theme:
+      css/classier_paragraphs.admin.css: {}

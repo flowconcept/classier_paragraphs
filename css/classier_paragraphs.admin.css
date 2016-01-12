@@ -1,0 +1,60 @@
+/* Beautify paragraph widget */
+.field--widget-entity-reference-paragraphs .form-wrapper {
+  margin-bottom: .75em;
+}
+
+.field--widget-entity-reference-paragraphs tr.draggable > td > div > .form-wrapper {
+  margin: 0;
+}
+
+.field--widget-entity-reference-paragraphs tr.draggable.even {
+  background-color: #f7f7f7;
+}
+
+/* Paragraph type */
+.field--widget-entity-reference-paragraphs .paragraph-type-top {
+  box-sizing: border-box;
+  margin-top: .75em;
+  padding: 0 12px;
+  background: linear-gradient(to bottom, #222 0%, #777 100%);
+  border-radius: 1em;
+  line-height: 3;
+}
+
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title {
+  margin: 0;
+  color: #bbb;
+}
+
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title em.placeholder {
+  font-weight: 700;
+  font-style: normal;
+  color: #fff;
+}
+
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraphs-dropbutton-wrapper {
+  margin: 0;
+}
+
+.field--widget-entity-reference-paragraphs .paragraphs-subform:empty {
+  /* Hide paragraphs without form items */
+  display: none;
+}
+
+/* Classier Paragraphs */
+.field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form {
+  margin: 0;
+}
+
+.field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form fieldset.form-wrapper {
+  box-sizing: border-box;
+  float: left;
+  min-width: 49%;
+  margin-bottom: .75em;
+  padding-right: 3em;
+}
+
+.field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form fieldset.form-wrapper:last-of-type {
+  float: none;
+  clear: right;
+}

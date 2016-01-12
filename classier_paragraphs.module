@@ -9,6 +9,13 @@ use \Drupal\Component\Utility\Html;
 use \Drupal\paragraphs\Entity\Paragraph;
 
 /**
+ * Implements hook_field_widget_PLUGIN_ID_form_alter().
+ */
+function classier_paragraphs_field_widget_entity_reference_paragraphs_form_alter(&$element, &$form_state, &$context) {
+  $element['#attached']['library'][] = 'classier_paragraphs/classier_paragraphs.admin';
+}
+
+/**
  * Prepares variables for paragraph templates.
  *
  * Default template: paragraph.html.twig.
