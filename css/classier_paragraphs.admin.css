@@ -11,19 +11,22 @@
   background-color: #f7f7f7;
 }
 
+.field--widget-entity-reference-paragraphs td.field-multiple-drag {
+  padding-top: 1.75em;
+}
+
 /* Paragraph type */
 .field--widget-entity-reference-paragraphs .paragraph-type-top {
   box-sizing: border-box;
-  margin-top: .75em;
   padding: 0 12px;
   background: linear-gradient(to bottom, #222 0%, #777 100%);
-  border-radius: 1em;
-  line-height: 3;
+  border-radius: .5em;
+  line-height: 3.5;
 }
 
 .field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title {
   margin: 0;
-  color: #bbb;
+  color: #ccc;
 }
 
 .field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title em.placeholder {
