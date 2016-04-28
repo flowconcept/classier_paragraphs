@@ -31,10 +31,11 @@ function classier_paragraphs_field_widget_entity_reference_paragraphs_form_alter
  *   - view_mode: View mode; e.g., 'full', 'teaser'...
  */
 function classier_paragraphs_preprocess_paragraph(&$variables) {
-  $classes = classier_paragraphs_get_classes($variables['paragraph']);
-  foreach ($classes as $class) {
-    $variables['attributes']['class'][] = Html::cleanCssIdentifier($class);
+  if (!isset($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = [];
   }
+  $classes = classier_paragraphs_get_classes($variables['paragraph']);
+  $variables['attributes']['class'] = array_merge($variables['attributes']['class'], $classes);
 }
 
 /**
