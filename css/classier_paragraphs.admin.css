@@ -19,14 +19,14 @@
 .field--widget-entity-reference-paragraphs .paragraph-type-top {
   box-sizing: border-box;
   padding: 0 12px;
-  background: linear-gradient(to bottom, #222 0%, #777 100%);
-  border-radius: .5em;
-  line-height: 3.5;
+  background: linear-gradient(to bottom, #333 0%, #555 100%);
+  border-radius: .3em;
+  line-height: 3;
 }
 
 .field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title {
   margin: 0;
-  color: #ccc;
+  color: #fff;
 }
 
 .field--widget-entity-reference-paragraphs .paragraph-type-top .paragraph-type-title em.placeholder {
@@ -35,8 +35,15 @@
   color: #fff;
 }
 
-.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraphs-dropbutton-wrapper {
-  margin: 0;
+.field--widget-entity-reference-paragraphs .paragraph-type-top .paragraphs-dropbutton-wrapper input.button {
+  border-color: #cacaca;
+  border-radius: 0.2rem;
+  color: #c72100;
+  font-size: 13px;
+  font-size: 0.813rem;
+  padding: 2px 1em;
+  font-weight: 500;
+  background: #fff;
 }
 
 .field--widget-entity-reference-paragraphs .paragraphs-subform:empty {
