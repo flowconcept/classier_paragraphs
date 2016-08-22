@@ -54,6 +54,9 @@
 /* Classier Paragraphs */
 .field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form {
   margin: 0;
+  float:left;
+  clear: both;
+  width: 100%;
 }
 
 .field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form fieldset.form-wrapper {
