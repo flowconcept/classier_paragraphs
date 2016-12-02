@@ -54,6 +54,13 @@ function classier_paragraphs_get_classes(Paragraph $paragraph) {
 
       if ($field->count()) {
         $items = $field->get(0)->getValue();
+//        Merge arrays so we can use checkbox field with multiple values
+        foreach ($items as $key => $item) {
+          if (is_array($item)) {
+            $items = array_merge($items, $item);
+            unset($items[$key]);
+          }
+        }
 
         // Filter out internal keys starting with '_'.
         return array_filter($items, function ($key) {
