@@ -15,6 +15,6 @@
 }
 
 .field--widget-entity-reference-paragraphs .field--widget-classier-paragraphs-form fieldset.form-wrapper:last-of-type {
-  float: none;
-  clear: right;
+ //float: none;
+ //clear: right;
 }
