@@ -2,7 +2,7 @@ name: Classier Paragraphs
 type: module
 description: Allows editors to apply classes to paragraphs.
 package: Paragraphs
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 dependencies:
-  - field
-  - paragraphs
+  - drupal:field
+  - paragraphs:paragraphs
